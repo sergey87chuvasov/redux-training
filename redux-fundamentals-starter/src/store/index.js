@@ -1,5 +1,7 @@
-import redux from 'redux';
-// import redux, { legacy_createStore } from 'redux';
+// import redux from 'redux';
+import { legacy_createStore } from 'redux';
+
+// const redux = require('redux');
 
 //func reducer
 const counterReducer = (state = { counter: 0 }, action) => {
@@ -19,6 +21,6 @@ const counterReducer = (state = { counter: 0 }, action) => {
 };
 
 // const store = legacy_createStore;
-const store = redux.legacy_createStore(counterReducer);
+const store = legacy_createStore(counterReducer);
 
 export default store;
