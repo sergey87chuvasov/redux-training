@@ -1,66 +1,94 @@
 // import redux from 'redux';
-import { legacy_createStore } from 'redux';
-import { createSlice } from '@reduxjs/toolkit';
+// import { legacy_createStore } from 'redux';
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 // const redux = require('redux');
 
 //func reducer
 
-const initialState = { counter: 0, isCounterInvisible: false };
+const initialCounterState = { value: 0, isCounterInvisible: false };
+
+const initialUserAuthState = { isUserLoggedIn: false}
 
 // slice it is a pice of state
-createSlice({
+const counterSlice = createSlice({
   name: 'counter',
-  initialState: initialState,
+  initialState: initialCounterState,
   reducers: {
     increment(state) {
-      state.counter++;
+      state.value++;
     },
     decrement(state) {
-      state.counter--;
+      state.value--;
     },
     increase(state, action) {
-      state.counter = state.counter + action.number;
+      // state.counter = state.counter + action.number;
+      state.value = state.value + action.payload;
     },
     setCounterVisibility(state) {
       state.isCounterInvisible = !state.isCounterInvisible;
     }
   }
+});
+
+const userAuthSlice = createSlice({
+  name: 'userAuth',
+  initialState: initialUserAuthState,
+  reducers: {
+    logIn(state) {
+      state.isUserLoggedIn = true;
+    },
+    signOut(state) {
+      state.isUserLoggedIn = false;
+    }
+  }
+
 })
 
-const counterReducer = (state = initialState, action) => {
-  if (action.type === 'increment') {
-    return {
-      counter: state.counter + 1,
-      isCounterInvisible: state.isCounterInvisible,
-    };
-  }
 
-  if (action.type === 'increase') {
-    return {
-      counter: state.counter + action.number,
-      isCounterInvisible: state.isCounterInvisible,
-    };
-  }
+// const counterReducer = (state = initialState, action) => {
+//   if (action.type === 'increment') {
+//     return {
+//       counter: state.counter + 1,
+//       isCounterInvisible: state.isCounterInvisible,
+//     };
+//   }
 
-  if (action.type === 'decrement') {
-    return {
-      counter: state.counter - 1,
-      isCounterInvisible: state.isCounterInvisible,
-    };
-  }
+//   if (action.type === 'increase') {
+//     return {
+//       counter: state.counter + action.number,
+//       isCounterInvisible: state.isCounterInvisible,
+//     };
+//   }
 
-  if (action.type === 'visibility') {
-    return {
-      counter: state.counter,
-      isCounterInvisible: !state.isCounterInvisible,
-    };
-  }
+//   if (action.type === 'decrement') {
+//     return {
+//       counter: state.counter - 1,
+//       isCounterInvisible: state.isCounterInvisible,
+//     };
+//   }
 
-  return state;
-};
+//   if (action.type === 'visibility') {
+//     return {
+//       counter: state.counter,
+//       isCounterInvisible: !state.isCounterInvisible,
+//     };
+//   }
+
+//   return state;
+// };
 
 // const store = legacy_createStore;
-const store = legacy_createStore(counterReducer);
+// const store = legacy_createStore(counterReducer);
+
+const store = configureStore({
+  reducer: {
+    counter: counterSlice.reducer,
+    auth: userAuthSlice.reducer
+  }
+});
+
+export const counterActions = counterSlice.actions;
+export const userAuthActions = userAuthSlice.actions;
 
 export default store;
