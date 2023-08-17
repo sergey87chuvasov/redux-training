@@ -1,49 +1,53 @@
 // import redux from 'redux';
 // import { legacy_createStore } from 'redux';
-import { createSlice, configureStore } from '@reduxjs/toolkit';
+// import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+
+import counterReducer from './counter-slice';
+import userAuthReducer from './user-auth-slice';
 
 // const redux = require('redux');
 
 //func reducer
 
-const initialCounterState = { value: 0, isCounterInvisible: false };
+// const initialCounterState = { value: 0, isCounterInvisible: false };
 
-const initialUserAuthState = { isUserLoggedIn: false}
+// const initialUserAuthState = { isUserLoggedIn: false}
 
 // slice it is a pice of state
-const counterSlice = createSlice({
-  name: 'counter',
-  initialState: initialCounterState,
-  reducers: {
-    increment(state) {
-      state.value++;
-    },
-    decrement(state) {
-      state.value--;
-    },
-    increase(state, action) {
-      // state.counter = state.counter + action.number;
-      state.value = state.value + action.payload;
-    },
-    setCounterVisibility(state) {
-      state.isCounterInvisible = !state.isCounterInvisible;
-    }
-  }
-});
+// const counterSlice = createSlice({
+//   name: 'counter',
+//   initialState: initialCounterState,
+//   reducers: {
+//     increment(state) {
+//       state.value++;
+//     },
+//     decrement(state) {
+//       state.value--;
+//     },
+//     increase(state, action) {
+//       // state.counter = state.counter + action.number;
+//       state.value = state.value + action.payload;
+//     },
+//     setCounterVisibility(state) {
+//       state.isCounterInvisible = !state.isCounterInvisible;
+//     }
+//   }
+// });
 
-const userAuthSlice = createSlice({
-  name: 'userAuth',
-  initialState: initialUserAuthState,
-  reducers: {
-    logIn(state) {
-      state.isUserLoggedIn = true;
-    },
-    signOut(state) {
-      state.isUserLoggedIn = false;
-    }
-  }
+// const userAuthSlice = createSlice({
+//   name: 'userAuth',
+//   initialState: initialUserAuthState,
+//   reducers: {
+//     logIn(state) {
+//       state.isUserLoggedIn = true;
+//     },
+//     signOut(state) {
+//       state.isUserLoggedIn = false;
+//     }
+//   }
 
-})
+// })
 
 
 // const counterReducer = (state = initialState, action) => {
@@ -83,12 +87,12 @@ const userAuthSlice = createSlice({
 
 const store = configureStore({
   reducer: {
-    counter: counterSlice.reducer,
-    auth: userAuthSlice.reducer
+    counter: counterReducer,
+    auth: userAuthReducer
   }
 });
 
-export const counterActions = counterSlice.actions;
-export const userAuthActions = userAuthSlice.actions;
+// export const counterActions = counterSlice.actions;
+// export const userAuthActions = userAuthSlice.actions;
 
 export default store;
