@@ -1,5 +1,6 @@
 import store from './redux/store.js';
-import getCurrentTime from './utils/getCurrentTime.js';
+// import getCurrentTime from './utils/getCurrentTime.js';
+import { addCurrentTime, clearTimes } from './redux/actionCreator.js';
 
 // // console.log(store);
 // // console.log(store.getState()); // [] - first state of our app
@@ -41,12 +42,29 @@ import getCurrentTime from './utils/getCurrentTime.js';
 
 // // console.log(store.getState()); // []
 
+// const addTimeBtn = document.getElementById('addTime');
+// addTimeBtn.addEventListener('click', () => {
+//   store.dispatch({
+//     type: 'ADD_CURRENT_TIME',
+//     payload: getCurrentTime(),
+//   });
+// });
+
+// const clearTimesBtn = document.getElementById('clearTimes');
+// clearTimesBtn.addEventListener('click', () => {
+//   store.dispatch({
+//     type: 'CLEAR_ALL_TIMES',
+//   });
+// });
+
 const addTimeBtn = document.getElementById('addTime');
 addTimeBtn.addEventListener('click', () => {
-  store.dispatch({
-    type: 'ADD_CURRENT_TIME',
-    payload: getCurrentTime(),
-  });
+  store.dispatch(addCurrentTime());
+});
+
+const clearTimesBtn = document.getElementById('clearTimes');
+clearTimesBtn.addEventListener('click', () => {
+  store.dispatch(clearTimes());
 });
 
 const timesList = document.getElementById('timesList');
