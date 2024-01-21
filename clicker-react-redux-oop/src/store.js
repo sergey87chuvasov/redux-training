@@ -24,14 +24,27 @@ export const store = createStore(
 );
 
 // create action  - simply {}
-export const increment = {
+// export const increment = {
+//   type: 'INCREMENT',
+// };
+
+// export const decrement = {
+//   type: 'DECREMENT',
+// };
+
+// export const reset = {
+//   type: 'RESET',
+// };
+
+// 2 opt
+export const increment = () => ({
   type: 'INCREMENT',
-};
+});
 
-export const decrement = {
+export const decrement = () => ({
   type: 'DECREMENT',
-};
+});
 
-export const reset = {
+export const reset = () => ({
   type: 'RESET',
-};
+});
