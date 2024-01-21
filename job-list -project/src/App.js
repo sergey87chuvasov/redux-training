@@ -4,7 +4,7 @@ import { FilterPanel } from 'components/FilterPanel';
 import { JobList } from 'components/JobList';
 import { TheHeader } from 'components/TheHeader';
 
-import { ADD_POSITIONS, addPositions } from 'store/positions/position-actions';
+import { addPositions } from 'store/positions/position-actions';
 
 import data from './mock/data.json';
 
