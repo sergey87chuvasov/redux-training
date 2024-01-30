@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { addTodo, removeTodo, toggleTodo } from './store';
+import { addTodo, removeTodo, toggleTodo } from './store/actions/todos-actions';
+import { allTodos } from './store/selectors/todos-selectors';
 
 import './App.css';
 
@@ -31,7 +32,7 @@ const NewTodo = () => {
 };
 
 const TodoList = () => {
-  const todos = useSelector((state) => state);
+  const todos = useSelector(allTodos);
   const dispatch = useDispatch();
 
   return (
@@ -42,12 +43,11 @@ const TodoList = () => {
             type='checkbox'
             checked={todo.completed}
             onChange={() => dispatch(toggleTodo(todo.id))}
-          />{' '}
-          {todo.title}{' '}
+          />
+          {todo.title}
           <button onClick={() => dispatch(removeTodo(todo.id))}>delete</button>
         </li>
       ))}
     </ul>
   );
 };
-const List 
